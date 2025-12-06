@@ -1,11 +1,9 @@
 package o.mg.day01;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Day01 {
-    private static final PrintStream IO = System.out;
 
     private static List<Pair<Character, Integer>> parseInput(String input) {
         String[] lines = input.split("\n");
@@ -37,6 +35,33 @@ public class Day01 {
     }
 
     public static Integer processPart2(String input) {
-        return null;
+        var parsed = parseInput(input);
+        int position = 50;
+        int password = 0;
+
+        for (var command : parsed) {
+            int rotation = command.second();
+            int start = position;
+            int end;
+
+            if (command.first() == 'R') {
+                end = position + rotation;
+                int firstMultiple = (start % 100 == 0) ? start + 100 : 100;
+                if (firstMultiple <= end) {
+                    password += ((end - firstMultiple) / 100) + 1;
+                }
+                position = end;
+            } else if (command.first() == 'L') {
+                end = position - rotation;
+                int firstMultiple = (start % 100 == 0) ? start - 100 : 0;
+                if (end <= firstMultiple) {
+                    password += ((firstMultiple - end) / 100) + 1;
+                }
+                position = end;
+            }
+
+            position = ((position % 100) + 100) % 100;
+        }
+        return password;
     }
 }
