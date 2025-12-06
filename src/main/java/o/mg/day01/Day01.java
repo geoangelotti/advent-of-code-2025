@@ -35,4 +35,8 @@ public class Day01 {
         }
         return password;
     }
+
+    public static Integer processPart2(String input) {
+        return null;
+    }
 }
