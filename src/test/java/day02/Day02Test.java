@@ -15,8 +15,8 @@ class Day02Test {
 
     @Test
     void testProcessPart1() {
-        Integer result = Day02.processPart1(INPUT);
-        assertEquals(Integer.valueOf(1227775554), result);
+        Long result = Day02.processPart1(INPUT);
+        assertEquals(Long.valueOf(1227775554), result);
     }
 }
 
