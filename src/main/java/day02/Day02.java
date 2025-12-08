@@ -69,9 +69,7 @@ public class Day02 {
     }
 
     public static Long processPart2(String input) {
-        var filter = (Predicate<Long>) _ -> {
-            return true;
-        };
+        var filter = (Predicate<Long>) _ -> true;
         return process(input, filter);
     }
 }
