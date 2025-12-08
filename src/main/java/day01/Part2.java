@@ -1,6 +1,11 @@
-import day01.Day01;
+package day01;
+
 import shared.Solver;
 
-void main() throws IOException {
-    Solver.processDay("day01.txt", Day01::processPart2);
+import java.io.IOException;
+
+public class Part2 {
+    public static void main(String[] args) throws IOException {
+        Solver.processDay("day01.txt", Day01::processPart2);
+    }
 }
