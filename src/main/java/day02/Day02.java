@@ -5,6 +5,7 @@ import shared.Pair;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Day02 {
@@ -48,19 +49,23 @@ public class Day02 {
         return numbers.stream();
     }
 
-    public static Long processPart1(String input) {
+    private static Long process(String input, Predicate<Long> filter) {
         var parsed = parseInput(input);
         return parsed.
                 stream().
                 flatMap(Day02::findMultiDigitNumbers).
-                filter(n -> {
-                            String repeated = String.valueOf(n);
-                            String firstHalf = repeated.substring(0, repeated.length() / 2);
-                            String secondHalf = repeated.substring(repeated.length() / 2);
-                            return firstHalf.equals(secondHalf);
-                        }
-                ).
+                filter(filter).
                 reduce(0L, Long::sum);
+    }
+
+    public static Long processPart1(String input) {
+        var filter = (Predicate<Long>) n -> {
+            String repeated = String.valueOf(n);
+            String firstHalf = repeated.substring(0, repeated.length() / 2);
+            String secondHalf = repeated.substring(repeated.length() / 2);
+            return firstHalf.equals(secondHalf);
+        };
+        return process(input, filter);
     }
 
     public static Long processPart2(String input) {
