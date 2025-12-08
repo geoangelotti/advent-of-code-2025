@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.function.Function;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -11,6 +15,13 @@ public class Main {
             //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
             // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
             IO.println("i = " + i);
+        }
+    }
+
+    public static <T> void processDay(String day, Function<String, T> solution) throws IOException {
+        try (var input = Objects.requireNonNull(Main.class.getClassLoader().getResourceAsStream(day))) {
+            String content = new String(input.readAllBytes(), StandardCharsets.UTF_8).trim();
+            IO.println(solution.apply(content));
         }
     }
 }
