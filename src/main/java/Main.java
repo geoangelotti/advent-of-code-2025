@@ -17,11 +17,4 @@ public class Main {
             IO.println("i = " + i);
         }
     }
-
-    public static <T> void processDay(String day, Function<String, T> solution) throws IOException {
-        try (var input = Objects.requireNonNull(Main.class.getClassLoader().getResourceAsStream(day))) {
-            String content = new String(input.readAllBytes(), StandardCharsets.UTF_8).trim();
-            IO.println(solution.apply(content));
-        }
-    }
 }
