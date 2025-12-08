@@ -69,10 +69,9 @@ public class Day02 {
     }
 
     public static Long processPart2(String input) {
-        var parsed = parseInput(input);
-        return parsed.
-                stream().
-                flatMap(Day02::findMultiDigitNumbers).
-                reduce(0L, Long::sum);
+        var filter = (Predicate<Long>) _ -> {
+            return true;
+        };
+        return process(input, filter);
     }
 }
