@@ -1,4 +1,4 @@
-package day01;
+package shared;
 
 public record Pair<T, K>(T first, K second) {
 }
