@@ -45,7 +45,6 @@ public class Day02 {
                 }
             }
         }
-        IO.println(numbers);
         return numbers.stream();
     }
 
@@ -61,6 +60,14 @@ public class Day02 {
                             return firstHalf.equals(secondHalf);
                         }
                 ).
+                reduce(0L, Long::sum);
+    }
+
+    public static Long processPart2(String input) {
+        var parsed = parseInput(input);
+        return parsed.
+                stream().
+                flatMap(Day02::findMultiDigitNumbers).
                 reduce(0L, Long::sum);
     }
 }
