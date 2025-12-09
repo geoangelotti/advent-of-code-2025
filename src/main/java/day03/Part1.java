@@ -8,6 +8,6 @@ import java.util.List;
 
 public class Part1 {
     public static void main(String[] args) throws IOException {
-        Solver.processDay("day02.txt", Day03::processPart1);
+        Solver.processDay("day03.txt", Day03::processPart1);
     }
 }
