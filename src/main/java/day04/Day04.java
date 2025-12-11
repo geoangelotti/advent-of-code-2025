@@ -56,4 +56,8 @@ public class Day04 {
         var grid = parseInput(input);
         return countRolls(grid);
     }
+
+    public static Integer processPart2(String input) {
+        return null;
+    }
 }
