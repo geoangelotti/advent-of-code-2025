@@ -17,7 +17,7 @@ public class Day04 {
         return grid;
     }
 
-    private static int adjacentRolls(List<List<Character>> grid, int r, int c) {
+    private static boolean isReachableRoll(List<List<Character>> grid, int r, int c) {
         int count = 0;
         count += get(grid, r - 1, c - 1);
         count += get(grid, r - 1, c);
@@ -27,7 +27,7 @@ public class Day04 {
         count += get(grid, r + 1, c - 1);
         count += get(grid, r + 1, c);
         count += get(grid, r + 1, c + 1);
-        return count;
+        return count < 4;
     }
 
     private static int get(List<List<Character>> grid, int r, int c) {
@@ -45,9 +45,9 @@ public class Day04 {
         int count = 0;
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (grid.get(r).get(c) == '@') {
-                    count += adjacentRolls(grid, r, c) < 4 ? 1 : 0;
-                };
+                if (grid.get(r).get(c) == '@' && isReachableRoll(grid, r, c)) {
+                    count += 1;
+                }
             }
         }
         return count;
