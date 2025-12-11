@@ -22,7 +22,7 @@ class Day04Test {
 
     @Test
     void testProcessPart1() {
-        Integer result = Day04.processPart1(INPUT);
+        var result = Day04.processPart1(INPUT);
         assertEquals(Integer.valueOf(13), result);
     }
 }
