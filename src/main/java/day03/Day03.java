@@ -31,4 +31,8 @@ public class Day03 {
         }
         return batteries.stream().reduce(0, Integer::sum);
     }
+
+    public static Long processPart2(String input) {
+        return null;
+    }
 }
