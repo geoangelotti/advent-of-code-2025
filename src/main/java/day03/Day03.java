@@ -32,41 +32,25 @@ public class Day03 {
         return batteries.stream().reduce(0, Integer::sum);
     }
 
-    private static int smallestDigitIndex(String line) {
-        var digits = Arrays.stream(line.split("")).map(Integer::parseInt).toList();
-        int smallestIndex = 0;
-        int smallest = digits.getFirst();
-        for (int i = 1; i < digits.size(); i++) {
-            if (digits.get(i) < smallest) {
-                smallest = digits.get(i);
-                smallestIndex = i;
+    private static String removeOneToMaximize(String s) {
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) < s.charAt(i + 1)) {
+                return s.substring(0, i) + s.substring(i + 1);
             }
         }
-        return smallestIndex;
-    }
-
-    private static long candidateFrom(int number, int smallestDigit, long largest ) {
-        String largestStr = String.valueOf(largest);
-        String candidateStr = largestStr.substring(0, smallestDigit) + largestStr.substring(smallestDigit+1) + number;
-        return Long.parseLong(candidateStr);
+        return s.substring(0, s.length() - 1);
     }
 
     public static Long processPart2(String input) {
         var lines = parseInput(input);
         var batteries = new ArrayList<Long>();
         for (String line : lines) {
-            var digits = line.split("");
-            long largest = Long.parseLong(line.substring(0,12));
-            int smallestIndex = smallestDigitIndex(line);
-            for (int i = 12; i < digits.length; i++) {
-                long candidate = candidateFrom(Integer.parseInt(digits[i]), smallestIndex, largest);
-                IO.println("Candidate: " + candidate + " largest: " + largest);
-                if (candidate > largest) {
-                    largest = candidate;
-                    smallestIndex = smallestDigitIndex(String.valueOf(largest));
-                }
+            String current = line.substring(0, 12);
+            for (int i = 12; i < line.length(); i++) {
+                current = current + line.charAt(i);
+                current = removeOneToMaximize(current);
             }
-            batteries.add(largest);
+            batteries.add(Long.parseLong(current));
         }
         return batteries.stream().reduce(0L, Long::sum);
     }
