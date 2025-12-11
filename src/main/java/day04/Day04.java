@@ -1,5 +1,7 @@
 package day04;
 
+import shared.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,17 +41,23 @@ public class Day04 {
     }
 
     private static Integer countRolls(List<List<Character>> grid) {
+        return countRollsAndPositions(grid).first();
+    }
+
+    private static Pair<Integer, List<Pair<Integer, Integer>>> countRollsAndPositions(List<List<Character>> grid) {
         int count = 0;
+        var positions = new ArrayList<Pair<Integer, Integer>>();
         int rows = grid.size();
         int cols = grid.getFirst().size();
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 if (grid.get(r).get(c) == '@' && isReachableRoll(grid, r, c)) {
                     count += 1;
+                    positions.add(new Pair<>(r, c));
                 }
             }
         }
-        return count;
+        return new Pair<>(count, positions);
     }
 
     public static Integer processPart1(String input) {
