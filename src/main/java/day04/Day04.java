@@ -38,11 +38,10 @@ public class Day04 {
         }
     }
 
-    public static Integer processPart1(String input) {
-        var grid = parseInput(input);
-        int rows = grid.size();
-        int cols = grid.get(0).size();
+    private static Integer countRolls(List<List<Character>> grid) {
         int count = 0;
+        int rows = grid.size();
+        int cols = grid.getFirst().size();
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 if (grid.get(r).get(c) == '@' && isReachableRoll(grid, r, c)) {
@@ -51,5 +50,10 @@ public class Day04 {
             }
         }
         return count;
+    }
+
+    public static Integer processPart1(String input) {
+        var grid = parseInput(input);
+        return countRolls(grid);
     }
 }
