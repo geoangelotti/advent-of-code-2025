@@ -15,7 +15,7 @@ class Day03Test {
 
     @Test
     void testProcessPart1() {
-        Integer result = Day03.processPart1(INPUT);
+        var result = Day03.processPart1(INPUT);
         assertEquals(Integer.valueOf(357), result);
     }
 
