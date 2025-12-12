@@ -19,7 +19,7 @@ public class Day04 {
         return grid;
     }
 
-    private static boolean isReachableRoll(List<List<Character>> grid, int r, int c) {
+    private static boolean isRollReachable(List<List<Character>> grid, int r, int c) {
         int count = 0;
         count += get(grid, r - 1, c - 1);
         count += get(grid, r - 1, c);
@@ -51,7 +51,7 @@ public class Day04 {
         int cols = grid.getFirst().size();
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (grid.get(r).get(c) == '@' && isReachableRoll(grid, r, c)) {
+                if (grid.get(r).get(c) == '@' && isRollReachable(grid, r, c)) {
                     count += 1;
                     positions.add(new Pair<>(r, c));
                 }
