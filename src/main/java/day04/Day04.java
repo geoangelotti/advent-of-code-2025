@@ -60,12 +60,26 @@ public class Day04 {
         return new Pair<>(count, positions);
     }
 
+    private static Integer recursivelyCollect(List<List<Character>> grid) {
+        var currentCountAndPositions = countRollsAndPositions(grid);
+        if (currentCountAndPositions.first() == 0) return 0;
+        cleanGrid(grid, currentCountAndPositions.second());
+        return recursivelyCollect(grid) + currentCountAndPositions.first();
+    }
+
+    private static void cleanGrid(List<List<Character>> grid, List<Pair<Integer, Integer>> positions) {
+        for (var pos : positions) {
+            grid.get(pos.first()).set(pos.second(), '.');
+        }
+    }
+
     public static Integer processPart1(String input) {
         var grid = parseInput(input);
         return countRolls(grid);
     }
 
     public static Integer processPart2(String input) {
-        return null;
+        var grid = parseInput(input);
+        return recursivelyCollect(grid);
     }
 }
