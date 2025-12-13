@@ -26,5 +26,11 @@ class Day05Test {
         var result = Day05.processPart1(INPUT);
         assertEquals(Integer.valueOf(3), result);
     }
+
+    @Test
+    void testProcessPart2() {
+        var result = Day05.processPart2(INPUT);
+        assertEquals(Integer.valueOf(14), result);
+    }
 }
 

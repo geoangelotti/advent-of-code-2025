@@ -25,4 +25,8 @@ public class Day05 {
                         .anyMatch(range -> range.contains(ingredient)))
                 .count();
     }
+
+    public static Integer processPart2(String input) {
+        return null;
+    }
 }
