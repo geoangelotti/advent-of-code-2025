@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Day05Test {
 
     private static final String INPUT = """
-.3-5
+3-5
 10-14
 16-20
 12-18
