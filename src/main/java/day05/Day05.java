@@ -3,6 +3,7 @@ package day05;
 import org.apache.commons.lang3.Range;
 import shared.Pair;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -26,7 +27,24 @@ public class Day05 {
                 .count();
     }
 
-    public static Integer processPart2(String input) {
-        return null;
+    public static Long processPart2(String input) {
+        var freshIngredients = parseInput(input).first();
+        List<Range<Long>> sorted = freshIngredients.stream()
+                .sorted((a, b) -> Long.compare(a.getMinimum(), b.getMinimum()))
+                .toList();
+
+        long count = 0;
+        long currentMax = Long.MIN_VALUE;
+
+        for (Range<Long> range : sorted) {
+            long start = Math.max(range.getMinimum(), currentMax + 1);
+            long end = range.getMaximum();
+            if (start <= end) {
+                count += (end - start + 1);
+                currentMax = Math.max(currentMax, end);
+            }
+        }
+
+        return count;
     }
 }

@@ -30,7 +30,7 @@ class Day05Test {
     @Test
     void testProcessPart2() {
         var result = Day05.processPart2(INPUT);
-        assertEquals(Integer.valueOf(14), result);
+        assertEquals(Long.valueOf(14), result);
     }
 }
 
