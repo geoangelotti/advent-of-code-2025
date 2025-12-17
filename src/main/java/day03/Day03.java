@@ -31,4 +31,27 @@ public class Day03 {
         }
         return batteries.stream().reduce(0, Integer::sum);
     }
+
+    private static String removeOneToMaximize(String s) {
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) < s.charAt(i + 1)) {
+                return s.substring(0, i) + s.substring(i + 1);
+            }
+        }
+        return s.substring(0, s.length() - 1);
+    }
+
+    public static Long processPart2(String input) {
+        var lines = parseInput(input);
+        var batteries = new ArrayList<Long>();
+        for (String line : lines) {
+            String current = line.substring(0, 12);
+            for (int i = 12; i < line.length(); i++) {
+                current = current + line.charAt(i);
+                current = removeOneToMaximize(current);
+            }
+            batteries.add(Long.parseLong(current));
+        }
+        return batteries.stream().reduce(0L, Long::sum);
+    }
 }

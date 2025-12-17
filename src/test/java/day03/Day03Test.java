@@ -19,5 +19,11 @@ class Day03Test {
         assertEquals(Integer.valueOf(357), result);
     }
 
+    @Test
+    void testProcessPart2() {
+        var result = Day03.processPart2(INPUT);
+        assertEquals(Long.valueOf(3121910778619L), result);
+    }
+
 }
 
