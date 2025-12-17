@@ -1,1 +1,0 @@
-package o.mg.day01;
