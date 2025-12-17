@@ -15,13 +15,13 @@ class Day02Test {
 
     @Test
     void testProcessPart1() {
-        Long result = Day02.processPart1(INPUT);
+        var result = Day02.processPart1(INPUT);
         assertEquals(Long.valueOf(1227775554), result);
     }
 
     @Test
     void testProcessPart2() {
-        Long result = Day02.processPart2(INPUT);
+        var result = Day02.processPart2(INPUT);
         assertEquals(Long.valueOf(4174379265L), result);
     }
 }

@@ -20,13 +20,13 @@ L82
 
     @Test
     void testProcessPart1() {
-        Integer result = Day01.processPart1(INPUT);
+        var result = Day01.processPart1(INPUT);
         assertEquals(Integer.valueOf(3), result);
     }
 
     @Test
     void testProcessPart2() {
-        Integer result = Day01.processPart2(INPUT);
+        var result = Day01.processPart2(INPUT);
         assertEquals(Integer.valueOf(6), result);
     }
 }
