@@ -3,7 +3,6 @@ package day06;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.BinaryOperator;
 
@@ -15,9 +14,9 @@ public class Day06 {
         ArrayList<ArrayList<Long>> result = new ArrayList<>();
         var lines = input.split("\n");
         var lastLine = lines[lines.length - 1].split(" +");
-        Arrays.stream(lastLine).forEach(column -> {
+        for (String _ : lastLine) {
             result.add(new ArrayList<>());
-        });
+        }
         for (int i = 0; i < lines.length-1; i++) {
             var columns = lines[i].split(" +");
             for (int j = 0; j < columns.length; j++) {
@@ -31,7 +30,7 @@ public class Day06 {
             parsed.add(Pair.of(result.get(j), lastLine[j]));
         }
         return parsed;
-    };
+    }
 
     public static Long processPart1(String input) {
         var parsed = parseInput(input);
