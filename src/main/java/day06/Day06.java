@@ -34,6 +34,11 @@ public class Day06 {
     };
 
     public static Long processPart1(String input) {
-        return null;
+        var parsed = parseInput(input);
+        return parsed.stream().map(row -> {
+            var list = row.getLeft();
+            var binaryOperator = row.getRight();
+            return list.stream().reduce(binaryOperator.equals("+") ? Long::sum : multiply).orElse(0L);
+        }).reduce(Long::sum).orElse(0L);
     }
 }
