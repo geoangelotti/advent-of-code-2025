@@ -33,15 +33,19 @@ public class Day06 {
         return rotate(grid);
     }
 
-    public static Long processPart1(String input) {
-        var parsed = parseInput(input);
-        return parsed.stream().map(column -> {
+    private static Long solve(ArrayList<ArrayList<String>> worksheet) {
+        return worksheet.stream().map(column -> {
             var binaryOperator = column.getFirst();
             return column.stream().
                     skip(1).
                     map(Long::valueOf).
                     reduce(binaryOperator.equals("+") ? Long::sum : multiply).orElse(0L);
         }).reduce(Long::sum).orElse(0L);
+    }
+
+    public static Long processPart1(String input) {
+        var parsed = parseInput(input);
+        return solve(parsed);
     }
 
     public static Long processPart2(String input) {
