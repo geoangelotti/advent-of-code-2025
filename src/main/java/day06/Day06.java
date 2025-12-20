@@ -43,4 +43,8 @@ public class Day06 {
                     reduce(binaryOperator.equals("+") ? Long::sum : multiply).orElse(0L);
         }).reduce(Long::sum).orElse(0L);
     }
+
+    public static Long processPart2(String input) {
+        return null;
+    }
 }

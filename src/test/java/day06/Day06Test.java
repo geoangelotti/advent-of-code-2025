@@ -19,5 +19,11 @@ class Day06Test {
         assertEquals(Long.valueOf(4277556), result);
     }
 
+    @Test
+    void testProcessPart2() {
+        var result = Day06.processPart2(INPUT);
+        assertEquals(Long.valueOf(3263827), result);
+    }
+
 }
 
