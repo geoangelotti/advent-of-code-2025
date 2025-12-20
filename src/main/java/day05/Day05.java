@@ -3,7 +3,6 @@ package day05;
 import org.apache.commons.lang3.Range;
 import shared.Pair;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
