@@ -1,43 +1,46 @@
 package day06;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 
 public class Day06 {
     private static final BinaryOperator<Long> multiply = (x, y) -> x * y;
 
-    private static List<Pair<ArrayList<Long>, String>>parseInput(String input) {
-        ArrayList<ArrayList<Long>> result = new ArrayList<>();
-        var lines = input.split("\n");
-        var lastLine = lines[lines.length - 1].split(" +");
-        for (String _ : lastLine) {
-            result.add(new ArrayList<>());
-        }
-        for (int i = 0; i < lines.length-1; i++) {
-            var columns = lines[i].split(" +");
-            for (int j = 0; j < columns.length; j++) {
-                var column = result.get(j);
-                column.add(Long.parseLong(columns[j]));
-                result.set(j, column);
+    private static ArrayList<ArrayList<String>> rotate(ArrayList<ArrayList<String>> grid) {
+        int rows = grid.size();
+        int cols = grid.getFirst().size();
+        ArrayList<ArrayList<String>> rotated = new ArrayList<>();
+        for (int col = 0; col < cols; col++) {
+            ArrayList<String> newRow = new ArrayList<>();
+            for (int row = rows - 1; row >= 0; row--) {
+                newRow.add(grid.get(row).get(col));
             }
+            rotated.add(newRow);
         }
-        var parsed = new ArrayList<Pair<ArrayList<Long>, String>>();
-        for (int j = 0; j < lastLine.length; j++) {
-            parsed.add(Pair.of(result.get(j), lastLine[j]));
-        }
-        return parsed;
+        return rotated;
+    }
+
+    private static ArrayList<ArrayList<String>> parseInput(String input) {
+        String[] lines = input.split("\n");
+        ArrayList<ArrayList<String>> grid = Arrays.stream(lines)
+                .map(line ->
+                        Arrays.stream(line.trim().split("\\s+"))
+                                .collect(Collectors.toCollection(ArrayList::new)))
+                .collect(Collectors.toCollection(ArrayList::new));
+        return rotate(grid);
     }
 
     public static Long processPart1(String input) {
         var parsed = parseInput(input);
-        return parsed.stream().map(row -> {
-            var list = row.getLeft();
-            var binaryOperator = row.getRight();
-            return list.stream().reduce(binaryOperator.equals("+") ? Long::sum : multiply).orElse(0L);
+        return parsed.stream().map(column -> {
+            var binaryOperator = column.getFirst();
+            return column.stream().
+                    skip(1).
+                    map(Long::valueOf).
+                    reduce(binaryOperator.equals("+") ? Long::sum : multiply).orElse(0L);
         }).reduce(Long::sum).orElse(0L);
     }
 }
