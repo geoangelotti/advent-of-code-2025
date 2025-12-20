@@ -1,6 +1,5 @@
 package day02;
 
-import day01.Day01;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
