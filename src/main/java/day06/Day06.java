@@ -43,6 +43,34 @@ public class Day06 {
         }).reduce(Long::sum).orElse(0L);
     }
 
+    private static ArrayList<ArrayList<String>> parseToCephalopodMath(String input) {
+        var pattern = Pattern.compile("[+*]");
+        var lines = input.split("\n");
+        var matcher = pattern.matcher(lines[lines.length - 1]);
+        var maxLength = input.length()/lines.length;
+        ArrayList<Integer> indexes = new ArrayList<>();
+        while (matcher.find()) {
+            indexes.add(matcher.start());
+        }
+        ArrayList<ArrayList<String>> columns = new ArrayList<>();
+        for (int i = 0; i < indexes.size(); i++) {
+            ArrayList<String> column = new ArrayList<>();
+            var index = indexes.get(i);
+            column.add(lines[lines.length - 1].substring(index, index + 1));
+            var end = (i == indexes.size() - 1) ? maxLength : indexes.get(i + 1) - 1;
+            for (int k = index; k < end; k++) {
+                StringBuilder number = new StringBuilder();
+                for (int j = 0; j < lines.length - 1; j++) {
+                    var current = StringUtils.rightPad(lines[j], maxLength, " ");
+                    number.append(current.charAt(k));
+                }
+                column.add(number.toString().trim());
+            }
+            columns.add(column);
+        }
+        return columns;
+    }
+
     public static Long processPart1(String input) {
         var parsed = parseInput(input);
         return solve(parsed);
