@@ -1,6 +1,6 @@
 package day02;
 
-import shared.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,15 +16,15 @@ public class Day02 {
             String[] parts = line.split(",");
             for (String part : parts) {
                 String[] numbers = part.split("-");
-                ids.add(new Pair<>(Long.parseLong(numbers[0]), Long.parseLong(numbers[1])));
+                ids.add(Pair.of(Long.parseLong(numbers[0]), Long.parseLong(numbers[1])));
             }
         }
         return ids;
     }
 
     private static Stream<Long> findMultiDigitNumbers(Pair<Long, Long> pair) {
-        long start = pair.first();
-        long end = pair.second();
+        long start = pair.getLeft();
+        long end = pair.getRight();
         HashSet<Long> numbers = new HashSet<>();
         int minDigits = String.valueOf(start).length();
         int maxDigits = String.valueOf(end).length();

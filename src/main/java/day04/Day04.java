@@ -1,6 +1,6 @@
 package day04;
 
-import shared.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class Day04 {
     }
 
     private static Integer countRolls(List<List<Character>> grid) {
-        return countRollsAndPositions(grid).first();
+        return countRollsAndPositions(grid).getLeft();
     }
 
     private static Pair<Integer, List<Pair<Integer, Integer>>> countRollsAndPositions(List<List<Character>> grid) {
@@ -53,23 +53,23 @@ public class Day04 {
             for (int c = 0; c < cols; c++) {
                 if (grid.get(r).get(c) == '@' && isRollReachable(grid, r, c)) {
                     count += 1;
-                    positions.add(new Pair<>(r, c));
+                    positions.add(Pair.of(r, c));
                 }
             }
         }
-        return new Pair<>(count, positions);
+        return Pair.of(count, positions);
     }
 
     private static Integer recursivelyCollect(List<List<Character>> grid) {
         var currentCountAndPositions = countRollsAndPositions(grid);
-        if (currentCountAndPositions.first() == 0) return 0;
-        cleanGrid(grid, currentCountAndPositions.second());
-        return recursivelyCollect(grid) + currentCountAndPositions.first();
+        if (currentCountAndPositions.getLeft() == 0) return 0;
+        cleanGrid(grid, currentCountAndPositions.getRight());
+        return recursivelyCollect(grid) + currentCountAndPositions.getLeft();
     }
 
     private static void cleanGrid(List<List<Character>> grid, List<Pair<Integer, Integer>> positions) {
         for (var pos : positions) {
-            grid.get(pos.first()).set(pos.second(), '.');
+            grid.get(pos.getLeft()).set(pos.getRight(), '.');
         }
     }
 
