@@ -80,6 +80,7 @@ public class Day06 {
     }
 
     public static Long processPart2(String input) {
-        return null;
+        var transformed = parseToCephalopodMath(input);
+        return solve(transformed);
     }
 }
