@@ -1,6 +1,6 @@
 package day01;
 
-import shared.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Day01 {
         for (String line : lines) {
             char direction = line.charAt(0);
             int rotation = Integer.parseInt(line.substring(1));
-            commands.add(new Pair<>(direction, rotation));
+            commands.add(Pair.of(direction, rotation));
         }
         return commands;
     }
@@ -23,10 +23,10 @@ public class Day01 {
         int position = 50;
         int password = 0;
         for (var command : parsed) {
-            if (command.first() == 'R') {
-                position += command.second();
-            } else if (command.first() == 'L') {
-                position -= command.second();
+            if (command.getLeft() == 'R') {
+                position += command.getRight();
+            } else if (command.getLeft() == 'L') {
+                position -= command.getRight();
             }
             position = ((position % 100) + 100) % 100;
             if (position == 0) {
@@ -42,18 +42,18 @@ public class Day01 {
         int password = 0;
 
         for (var command : parsed) {
-            int rotation = command.second();
+            int rotation = command.getLeft();
             int start = position;
             int end;
 
-            if (command.first() == 'R') {
+            if (command.getRight() == 'R') {
                 end = position + rotation;
                 int firstMultiple = (start % 100 == 0) ? start + 100 : 100;
                 if (firstMultiple <= end) {
                     password += ((end - firstMultiple) / 100) + 1;
                 }
                 position = end;
-            } else if (command.first() == 'L') {
+            } else if (command.getLeft() == 'L') {
                 end = position - rotation;
                 int firstMultiple = (start % 100 == 0) ? start - 100 : 0;
                 if (end <= firstMultiple) {
