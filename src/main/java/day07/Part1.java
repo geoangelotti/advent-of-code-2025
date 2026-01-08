@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public class Part1 {
     public static void main(String[] args) throws IOException {
-        Solver.processDay("day06.txt", Day07::processPart1);
+        Solver.processDay("day07.txt", Day07::processPart1);
     }
 }
