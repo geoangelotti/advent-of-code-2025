@@ -45,7 +45,6 @@ public class Day07 {
             Integer maxHeight,
             Integer maxWidth
     ) {
-        IO.println("spawned" + start);
         var current = start;
         while (current.getLeft() < maxWidth && current.getRight() < maxHeight && current.getLeft() >= 0) {
             var next = Pair.of(current.getLeft(), current.getRight() + 1);
