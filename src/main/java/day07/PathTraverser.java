@@ -20,9 +20,13 @@ public class PathTraverser {
         seenPoints = new HashSet<>();
     }
 
+    private boolean isInBounds(Pair<Integer, Integer> point) {
+        return point.getLeft() < MAX_WIDTH && point.getRight() < MAX_HEIGHT && point.getLeft() >= 0;
+    }
+
     public void traverse(Pair<Integer, Integer> start) {
         var current = start;
-        while (current.getLeft() < MAX_WIDTH && current.getRight() < MAX_HEIGHT && current.getLeft() >= 0) {
+        while (isInBounds(current)) {
             var next = Pair.of(current.getLeft(), current.getRight() + 1);
             if (seenPoints.contains(next)) {
                 break;
