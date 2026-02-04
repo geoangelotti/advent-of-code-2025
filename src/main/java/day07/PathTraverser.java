@@ -50,17 +50,12 @@ public class PathTraverser {
     public ArrayList<Map.Entry<Pair<Integer, Integer>, Long>> getTimelinesSorted() {
         var timelines = new ArrayList<>(manifoldTimelines.entrySet());
         timelines.sort(
-                new Comparator<Map.Entry<Pair<Integer, Integer>, Long>>() {
-                    @Override
-                    public int compare(
-                            Map.Entry<Pair<Integer, Integer>, Long> o1,
-                            Map.Entry<Pair<Integer, Integer>, Long> o2) {
-                        int compareFirst = o1.getKey().getRight().compareTo(o2.getKey().getRight());
-                        if (compareFirst != 0) {
-                            return compareFirst;
-                        }
-                        return o1.getKey().getLeft().compareTo(o2.getKey().getRight());
+                (o1, o2) -> {
+                    int compareFirst = o1.getKey().getRight().compareTo(o2.getKey().getRight());
+                    if (compareFirst != 0) {
+                        return compareFirst;
                     }
+                    return o1.getKey().getLeft().compareTo(o2.getKey().getRight());
                 });
         return timelines;
     }
