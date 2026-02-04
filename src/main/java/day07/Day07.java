@@ -47,7 +47,12 @@ public class Day07 {
         return traverser.getTouchedManifoldsCount();
     }
 
-    public static Integer processPart2(String input) {
-        return null;
+    public static Long processPart2(String input) {
+        var grid = parseInput(input);
+        var startAndManifolds = getStartAndManifolds(grid);
+        var start = startAndManifolds.getLeft();
+        var manifolds = startAndManifolds.getRight();
+        var traverser = new PathTraverser(grid.size(), grid.size(), manifolds);
+        return traverser.timelineTraverse(start);
     }
 }

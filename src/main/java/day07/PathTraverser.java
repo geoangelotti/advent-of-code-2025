@@ -25,6 +25,10 @@ public class PathTraverser {
         return point.getLeft() < MAX_WIDTH && point.getRight() < MAX_HEIGHT && point.getLeft() >= 0;
     }
 
+    private boolean isLastPoint(Pair<Integer, Integer> point) {
+        return point.getRight() == MAX_WIDTH;
+    }
+
     public void traverse(Pair<Integer, Integer> start) {
         var current = start;
         while (isInBounds(current)) {
@@ -41,6 +45,28 @@ public class PathTraverser {
             }
             current = next;
         }
+    }
+
+    public Long timelineTraverse(Pair<Integer, Integer> start) {
+        var current = start;
+        var timelinesCount = 0L;
+        while (isInBounds(current)) {
+            var next = Pair.of(current.getLeft(), current.getRight() + 1);
+            if (manifoldTimelines.containsKey(next)) {
+                return manifoldTimelines.get(next);
+            }
+            if (MANIFOLDS.contains(next)) {
+                timelinesCount += timelineTraverse(Pair.of(next.getLeft() - 1, next.getRight()));
+                timelinesCount += timelineTraverse(Pair.of(next.getLeft() + 1, next.getRight()));
+                break;
+            }
+            current = next;
+        }
+        if (isLastPoint(current)) {
+            timelinesCount += 1;
+        }
+        manifoldTimelines.put(current, timelinesCount);
+        return timelinesCount;
     }
 
     public Integer getTouchedManifoldsCount() {
