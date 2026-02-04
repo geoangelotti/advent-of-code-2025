@@ -2,7 +2,9 @@ package day07;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class PathTraverser {
@@ -11,6 +13,7 @@ public class PathTraverser {
     private final Set<Pair<Integer, Integer>> MANIFOLDS;
     private final Set<Pair<Integer, Integer>> touchedManifolds;
     private final Set<Pair<Integer, Integer>> seenPoints;
+    private final Map<Pair<Integer, Integer>, Long> manifoldTimelines;
 
     public PathTraverser(int maxHeight, int maxWidth, Set<Pair<Integer, Integer>> manifolds) {
         MAX_HEIGHT = maxHeight;
@@ -18,6 +21,7 @@ public class PathTraverser {
         MANIFOLDS = manifolds;
         touchedManifolds = new HashSet<>();
         seenPoints = new HashSet<>();
+        manifoldTimelines = new HashMap<>();
     }
 
     private boolean isInBounds(Pair<Integer, Integer> point) {
