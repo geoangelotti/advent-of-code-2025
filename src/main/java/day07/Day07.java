@@ -46,4 +46,8 @@ public class Day07 {
         traverser.traverse(start);
         return traverser.getTouchedManifoldsCount();
     }
+
+    public static Integer processPart2(String input) {
+        return null;
+    }
 }
